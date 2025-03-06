@@ -1,27 +1,25 @@
-
-# Task Analysis {.appendix}
-
-Here are some questions to guide you through the process of doing a task analysis. You don't have to specifically answer each one of these (and some may not apply), but they should get you started thinking in the right direction. 
-
-What are the prerequisites, for both knowledge and e.g. software setup? 
-
-What are the basic requirements for any data that the method is used on? 
-  - Are missing values allowed? 
-  - Should the data be confined within a certain range? 
-  - Does the data have to be approximately normally distributed? 
+What are the basic requirements for any data on which the method is used? 
+  - Are missing values allowed?  No
+  - Should the data be confined within a certain range? No, but they should be numbers above zero.
+  - Does the data have to be approximately normally distributed? No, but the comparisons should be independent of each other.
 
 What are the basic components of the task?
   - Outline these in a bit more detail
 
+First, the user should collect data in a way that sets up data as  (competitor 1, competitor 2, Wins for 1, wins for B)
 
-What decisions does the user need to be prepared to make on the fly?
+They should then clean the data to remove duplicate, negative, or missing values.
 
-What questions should the user ask of the "first draft" of the product? What adjustments may need to be made?
+Next, they should pick the appropriate software packages in R/Python.
 
+Next, start using software to fit the data and document it to help you remember later.
 
-## Additional Guidance 
+Finally, they should interpret the fitting results and look to see if the model is a good fit with the expected results.
+ 
+What decisions does the user need to be prepared to make on the fly? 
 
-Your check-in should answer these basic questions (and similar concerns that apply more directly to your topic). 
+They may need to decide whether a different model should be used if the outcomes don’t align. They may also need to determine whether the dataset is valid and needs manipulation.
 
-Once you've completed the check-in, you can use this section to jump-start an introduction/set-up/getting started section in your user guide. 
-This document should remain as an appendix to your main report. 
+What questions should the user ask of the "first draft" of the product? What adjustments need to be made?
+
+Does the model fit well with the expected outcome? Should I be using a different model like the Elo or Glicko? How can I make the model more accurate? They may need to manipulate data better, tweak the code, or use a different software package or model.
