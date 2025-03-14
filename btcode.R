@@ -9,9 +9,9 @@ data <- read.csv("hoopsno.csv")
 colnames(data) <- c("winner", "loser", "win_count")  # Modify if your columns have different names
 
 # Convert winner and loser columns to factors with the same levels
-teams <- unique(c(data$winner, data$loser))  # Get all unique teams
 data$winner <- factor(data$winner, levels = teams)
 data$loser  <- factor(data$loser, levels = teams)
+
 
 # Fit the Bradley-Terry model
 bt_model <- BTm(
