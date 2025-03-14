@@ -105,9 +105,9 @@ Now we can fit the model using BTm()!
 
 After using the summary function, you should look at the team strengths to see if they are significant using a p value of 0.05.
 
--   If it is greater \> 0.05, like it is for hoopsno.csv, the team's strength does not provide a strong enough effect to influence the result of the game.
+-   If it is \> 0.05, like it is for hoopsno.csv, the team's strength does not provide a strong enough effect to influence the result of the game.
 
--   If it is less, \> 0.05, the team's strength does provide a strong enough effect to influence the result of the game and can be used to predict outcomes.
+-   If it is \< 0.05, the team's strength does provide a strong enough effect to influence the result of the game and can be used to predict outcomes.
 
 ------------------------------------------------------------------------
 
