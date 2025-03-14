@@ -1,0 +1,127 @@
+---
+title: "Fitting a Bradley-Terry Model in R"
+format: html
+---
+
+# **Introduction**
+
+Sports analytics has grown tremendously in recent years due to increased demand for data-driven insights from machine learning tools and advanced statistical models. Point score and ranking models can help predict the score and rank players and teams. However, In sports, the most fundamental question for teams and fans is who will win or lose. Building a binary outcome model for head-to-head games is important when teams play one another a different number of times. One of the most popular cumulative functions for a paired comparison model is the Bradley-Terry Model. It estimates the probability that one team, i, wins against another, j, based on their relative "strength" parameters.
+
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXei86zb5MoxnEtb3WFBkfGp5gZ3DehNWytu0ANVxkRQlxDNSlO6AOIimzvBS_dH4KtQ6ZTyCuaQSSfodahQxhJ7y_GMcM-BqMInbBuh_AQX8IXlmqlI5zFCN1qEXe-Gi24Z-G55_A?key=a4IoOwSVDLGAwOB27BpxeAMY){alt="\\begin{aligned} \\text{Prob(} i \\text{ beats } j) &" fig-align="center" width="261"}
+
+$$ P(A \text{ beats } B) = \frac{e^{(\beta_A - \beta_B)}}{1 + e^{(\beta_A - \beta_B)}} $$The output will provide estimates for each team’s ability (log-strength). A higher strength coefficient means a team is better.
+
+This user guide will explain how to fit a **Bradley-Terry model in R**
+
+------------------------------------------------------------------------
+
+## **Before Getting Started**
+
+1.  If you do not have R or Rstudio dowloaded or installed, please visit this [link](https://rstudio-education.github.io/hopr/starting.html).
+
+2.  Open R and install the `BradleyTerry2` package if you haven’t already:
+
+3.  `install.packages("BradleyTerry2")`
+
+    `library(BradleyTerry2)`
+
+------------------------------------------------------------------------
+
+## **2. Creating a Data Set**
+
+1.  The data should be structured in a way that records paired comparisons, where one team wins against another. The data shouldn't contain missing values or duplicates. To find out more about data cleaning and specifically removing duplicate values please visit this [link](https://www.datanovia.com/en/lessons/identify-and-remove-duplicate-data-in-r/).
+
+2.  The dataset should record the winning and losing team and how many times a team beats another.
+
+3.  The data should be setup as the following.
+
+    Note: you can add as many and any teams as possible, but 3 are used here in this college basketball example.
+
+    `data <- data.frame(`
+
+    `Winning Team = ("Iowa", "Nebraska", "Northwestern")`
+
+    `Losing Team = ("Nebraska", "Northwestern", "Iowa")`
+
+    `Win Number Count = (2,1,1)`
+
+`print (data)`
+
+------------------------------------------------------------------------
+
+## **3. Converting Data to BTM Proper Format**
+
+To fit the Bradley-Terry model, you have to convert this dataset into a format suitable for `BTm`
+
+`BT_data <- countsToBinomial(data)`
+
+`print(BT_data)()`.
+
+------------------------------------------------------------------------
+
+## **4. Fit the Bradley-Terry Model**
+
+Now, we fit the Bradley-Terry model using `BTm()`.
+
+```{r}
+# Fit the Bradley-Terry model
+BT_model <- BTm(cbind(win1, win2), player1, player2, data = BT_data)
+
+# Display model summary
+summary(BT_model)
+```
+
+------------------------------------------------------------------------
+
+## **5. Interpreting the Results**
+
+The odds of player ( A ) beating player ( B ) can be computed as:\
+
+------------------------------------------------------------------------
+
+## **6. Predicting Outcomes**
+
+To calculate the probability of player **A beating B** using model coefficients:
+
+```{r}
+# Extract player strengths
+player_strengths <- BTabilities(BT_model)
+
+# Compute probability of A beating B
+beta_A <- player_strengths["A"]
+beta_B <- player_strengths["B"]
+prob_A_beats_B <- exp(beta_A - beta_B) / (1 + exp(beta_A - beta_B))
+
+cat("Probability that A beats B:", prob_A_beats_B, "\n")
+```
+
+------------------------------------------------------------------------
+
+## **7. Ranking Players**
+
+To obtain and rank player strengths:
+
+```{r}
+player_rankings <- as.data.frame(BTabilities(BT_model))
+player_rankings <- player_rankings[order(-player_rankings$ability), ]  # Sort by strength
+print(player_rankings)
+```
+
+------------------------------------------------------------------------
+
+## **8. Conclusion**
+
+-   The **Bradley-Terry model** estimates the probability of one competitor winning over another.
+-   The **`BradleyTerry2` package** in R makes implementation easy.
+-   **Higher coefficients** indicate stronger players.
+-   The model can be used for **ranking and predicting** match outcomes.
+
+Let me know if you need further clarifications! 🚀
+
+## **References**
+
+@grolemund
+
+@turner2012
+
+@identify
