@@ -1,67 +1,91 @@
-@article{turnerBradleyTerryModelsBradleyTerry22012,
-  title = {Bradley-{{Terry Models}} in {{{\mkbibemph{R}}}} : {{The}} {{{\textbf{BradleyTerry2}}}} {{Package}}},
-  shorttitle = {Bradley-{{Terry Models}} in {{{\mkbibemph{R}}}}},
-  author = {Turner, Heather and Firth, David},
-  date = {2012},
-  journaltitle = {Journal of Statistical Software},
-  shortjournal = {J. Stat. Soft.},
-  volume = {48},
-  number = {9},
-  issn = {1548-7660},
-  doi = {10.18637/jss.v048.i09},
-  url = {http://www.jstatsoft.org/v48/i09/},
-  urldate = {2025-03-14},
-  abstract = {This is a short overview of the R add-on package BradleyTerry2, which facilitates the specification and fitting of Bradley-Terry logit, probit or cauchit models to paircomparison data. Included are the standard ‘unstructured’ Bradley-Terry model, structured versions in which the parameters are related through a linear predictor to explanatory variables, and the possibility of an order or ‘home advantage’ effect or other ‘contest-specific’ effects. Model fitting is either by maximum likelihood, by penalized quasi-likelihood (for models which involve a random effect), or by bias-reduced maximum likelihood in which the first-order asymptotic bias of parameter estimates is eliminated. Also provided are a simple and efficient approach to handling missing covariate data, and suitably-defined residuals for diagnostic checking of the linear predictor.},
-  langid = {english},
-  file = {/Users/jackstewart/Zotero/storage/STTZ997Y/Turner and Firth - 2012 - Bradley-Terry Models in R  The BradleyTerry2 Package.pdf}
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+@article{turnerBradleyTerryModelsBradleyTerry22012, title =
+{Bradley-{{Terry Models}} in {{{\mkbibemph{R}}}} : {{The}}
+{{{\textbf{BradleyTerry2}}}} {{Package}}}, shorttitle = {Bradley-{{Terry
+Models}} in {{{\mkbibemph{R}}}}}, author = {Turner, Heather and Firth,
+David}, date = {2012}, journaltitle = {Journal of Statistical Software},
+shortjournal = {J. Stat. Soft.}, volume = {48}, number = {9}, issn =
+{1548-7660}, doi = {10.18637/jss.v048.i09}, url =
+{http://www.jstatsoft.org/v48/i09/}, urldate = {2025-03-14}, abstract =
+{This is a short overview of the R add-on package BradleyTerry2, which
+facilitates the specification and fitting of Bradley-Terry logit, probit
+or cauchit models to paircomparison data. Included are the standard
+‘unstructured’ Bradley-Terry model, structured versions in which the
+parameters are related through a linear predictor to explanatory
+variables, and the possibility of an order or ‘home advantage’ effect or
+other ‘contest-specific’ effects. Model fitting is either by maximum
+likelihood, by penalized quasi-likelihood (for models which involve a
+random effect), or by bias-reduced maximum likelihood in which the
+first-order asymptotic bias of parameter estimates is eliminated. Also
+provided are a simple and efficient approach to handling missing
+covariate data, and suitably-defined residuals for diagnostic checking
+of the linear predictor.}, langid = {english}, file =
+{/Users/jackstewart/Zotero/storage/STTZ997Y/Turner and Firth - 2012 -
+Bradley-Terry Models in R The BradleyTerry2 Package.pdf} }
+
+@article{glickmanModelsRatingSystems2024, title = {Models and {{Rating
+Systems}} for {{Head-to-Head Competition}}}, author = {Glickman, Mark E.
+and Jones, Albyn C.}, date = {2024-11-20}, publisher = {Annual Reviews},
+doi = {10.1146/annurev-statistics-040722-061813}, url =
+{https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040722-061813},
+urldate = {2025-02-03}, abstract = {One of the most important tasks in
+sports analytics is the development of binary response models for
+head-to-head game outcomes to estimate team and player strength. We
+discuss commonly used probability models for game outcomes, including
+the Bradley–Terry and Thurstone–Mosteller models, as well as extensions
+to ties as a third outcome and to the inclusion of a home-field
+advantage. We consider dynamic extensions to these models to account for
+the evolution of competitor strengths over time. Full likelihood-based
+analyses of these time-varying models can be simplified into rating
+systems, such as the Elo and Glicko rating systems. We present other
+modern rating systems, including popular methods for online gaming, and
+novel systems that have been implemented for online chess and Go. The
+discussion of the analytic methods are accompanied by examples of where
+these approaches have been implemented for various gaming organizations,
+as well as a detailed application to National Basketball Association
+game outcomes.}, langid = {english}, file =
+{/Users/jackstewart/Zotero/storage/KCT7SR6L/Glickman and Jones - 2024 -
+Models and Rating Systems for Head-to-Head
+Competition.pdf;/Users/jackstewart/Zotero/storage/CHRZFA4I/annurev-statistics-040722-061813.html}
 }
 
-@article{glickmanModelsRatingSystems2024,
-  title = {Models and {{Rating Systems}} for {{Head-to-Head Competition}}},
-  author = {Glickman, Mark E. and Jones, Albyn C.},
-  date = {2024-11-20},
-  publisher = {Annual Reviews},
-  doi = {10.1146/annurev-statistics-040722-061813},
-  url = {https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040722-061813},
-  urldate = {2025-02-03},
-  abstract = {One of the most important tasks in sports analytics is the development of binary response models for head-to-head game outcomes to estimate team and player strength. We discuss commonly used probability models for game outcomes, including the Bradley–Terry and Thurstone–Mosteller models, as well as extensions to ties as a third outcome and to the inclusion of a home-field advantage. We consider dynamic extensions to these models to account for the evolution of competitor strengths over time. Full likelihood-based analyses of these time-varying models can be simplified into rating systems, such as the Elo and Glicko rating systems. We present other modern rating systems, including popular methods for online gaming, and novel systems that have been implemented for online chess and Go. The discussion of the analytic methods are accompanied by examples of where these approaches have been implemented for various gaming organizations, as well as a detailed application to National Basketball Association game outcomes.},
-  langid = {english},
-  file = {/Users/jackstewart/Zotero/storage/KCT7SR6L/Glickman and Jones - 2024 - Models and Rating Systems for Head-to-Head Competition.pdf;/Users/jackstewart/Zotero/storage/CHRZFA4I/annurev-statistics-040722-061813.html}
+@book{grolemundInstallingRStudioHandsOn, title = {A {{Installing R}} and
+{{RStudio}} \| {{Hands-On Programming}} with {{R}}}, author =
+{Grolemund, Garrett}, url = {https://rstudio-education.github.io/hopr/},
+urldate = {2025-03-14}, abstract = {This book will teach you how to
+program in R, with hands-on examples. I wrote it for non-programmers to
+provide a friendly introduction to the R language. You’ll learn how to
+load data, assemble and disassemble data objects, navigate R’s
+environment system, write your own functions, and use all of R’s
+programming tools. Throughout the book, you’ll use your newfound skills
+to solve practical data science problems.}, file =
+{/Users/jackstewart/Zotero/storage/TMDYWHQS/starting.html} }
+
+@online{IdentifyRemoveDuplicate, title = {Identify and {{Remove
+Duplicate Data}} in {{R}}}, url =
+{https://www.datanovia.com/en/lessons/identify-and-remove-duplicate-data-in-r/},
+urldate = {2025-03-14}, abstract = {You will learn how to identify and
+to remove duplicate data using R base and dplyr functions.}, langid =
+{american}, organization = {Datanovia}, file =
+{/Users/jackstewart/Zotero/storage/DJPRYS2K/identify-and-remove-duplicate-data-in-r.html}
 }
 
-@book{grolemundInstallingRStudioHandsOn,
-  title = {A {{Installing R}} and {{RStudio}} | {{Hands-On Programming}} with {{R}}},
-  author = {Grolemund, Garrett},
-  url = {https://rstudio-education.github.io/hopr/},
-  urldate = {2025-03-14},
-  abstract = {This book will teach you how to program in R, with hands-on examples. I wrote it for non-programmers to provide a friendly introduction to the R language. You’ll learn how to load data, assemble and disassemble data objects, navigate R’s environment system, write your own functions, and use all of R’s programming tools. Throughout the book, you’ll use your newfound skills to solve practical data science problems.},
-  file = {/Users/jackstewart/Zotero/storage/TMDYWHQS/starting.html}
-}
+@online{smith1BradleyTerryLuceModel, title = {1. {{Bradley-Terry-Luce
+Model}} — {{Data Science Topics}} 0.0.1 Documentation}, author = {Smith,
+John}, url = {https://datascience.oneoffcoder.com/btl-model.html},
+urldate = {2025-03-06}, file =
+{/Users/jackstewart/Zotero/storage/Z7WIECEG/btl-model.html} }
 
-@online{IdentifyRemoveDuplicate,
-  title = {Identify and {{Remove Duplicate Data}} in {{R}}},
-  url = {https://www.datanovia.com/en/lessons/identify-and-remove-duplicate-data-in-r/},
-  urldate = {2025-03-14},
-  abstract = {You will learn how to identify and to remove duplicate data using R base and dplyr functions.},
-  langid = {american},
-  organization = {Datanovia},
-  file = {/Users/jackstewart/Zotero/storage/DJPRYS2K/identify-and-remove-duplicate-data-in-r.html}
-}
-
-@online{smith1BradleyTerryLuceModel,
-  title = {1. {{Bradley-Terry-Luce Model}} — {{Data Science Topics}} 0.0.1 Documentation},
-  author = {Smith, John},
-  url = {https://datascience.oneoffcoder.com/btl-model.html},
-  urldate = {2025-03-06},
-  file = {/Users/jackstewart/Zotero/storage/Z7WIECEG/btl-model.html}
-}
-
-@online{MinnesotaGoldenGophers,
-  title = {Minnesota {{Golden Gophers}} 2024-25 {{Regular Season NCAAM Schedule}}},
-  url = {https://www.espn.com/mens-college-basketball/team/schedule/_/id/135},
-  urldate = {2025-03-14},
-  abstract = {ESPN has the full 2024-25 Minnesota Golden Gophers Regular Season NCAAM schedule. Includes game times, TV listings and ticket information for all Golden Gophers games.},
-  langid = {english},
-  organization = {ESPN},
-  file = {/Users/jackstewart/Zotero/storage/E89HDTCL/135.html}
-}
+@online{MinnesotaGoldenGophers, title = {Minnesota {{Golden Gophers}}
+2024-25 {{Regular Season NCAAM Schedule}}}, url =
+{https://www.espn.com/mens-college-basketball/team/schedule/\_/id/135},
+urldate = {2025-03-14}, abstract = {ESPN has the full 2024-25 Minnesota
+Golden Gophers Regular Season NCAAM schedule. Includes game times, TV
+listings and ticket information for all Golden Gophers games.}, langid =
+{english}, organization = {ESPN}, file =
+{/Users/jackstewart/Zotero/storage/E89HDTCL/135.html} }
