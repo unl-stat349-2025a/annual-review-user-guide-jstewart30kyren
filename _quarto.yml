@@ -9,9 +9,9 @@ from: markdown+emoji
 
 book:
   title: "User Guide: Annual Review Article Topic"
-  author: "Author Name"
+  author: "Jack Stewart"
   page-footer:
-    left: "Copyright 2025, Author Name"
+    left: "Copyright 2025, Jack Stewart"
   chapters:
     - index.qmd # Remove this before you submit your final report!
     - guide.qmd
@@ -20,6 +20,8 @@ book:
     - topic.qmd
     - needs.qmd
     - task-analysis.qmd
+    - bball.png
+    -bball2.png
 
 bibliography: references.bib
 
