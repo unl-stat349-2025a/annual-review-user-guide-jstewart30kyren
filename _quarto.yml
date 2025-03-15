@@ -21,7 +21,7 @@ book:
     - needs.qmd
     - task-analysis.qmd
     - bball.png
-    -bball2.png
+    - bball2.png
 
 bibliography: references.bib
 
