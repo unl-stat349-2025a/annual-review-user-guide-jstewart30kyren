@@ -13,7 +13,6 @@ book:
   page-footer:
     left: "Copyright 2025, Jack Stewart"
   chapters:
-    - index.qmd # Remove this before you submit your final report!
     - guide.qmd
     - references.qmd
   appendices:
