@@ -8,12 +8,12 @@ date-format: long
 from: markdown+emoji
 
 book:
-  title: "User Guide: Annual Review Article Topic"
+  title: "User Guide: Fitting A Bradley Terry Model in R"
   author: "Jack Stewart"
   page-footer:
     left: "Copyright 2025, Jack Stewart"
   chapters:
-    - guide.qmd
+    - index.qmd
     - references.qmd
   appendices:
     - topic.qmd
