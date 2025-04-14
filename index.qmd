@@ -1,49 +1,152 @@
-# Preface {.unnumbered}
-
-You are a data scientist for a mid-sized business, in a small group of 3-4 data scientists. You've been tasked with creating a report evaluating a scenario for your business. 
-Your colleagues will also be evaluating the same scenario, and your reports will be used in aggregate to determine a consensus (or lack thereof) on the company's action. 
-The reports will also be used to inform downsizing that is rumored to be coming - you want to ensure your report is better than your peers so that you aren't as easy to cut. 
-
-You may talk to your peers who are assigned the same scenario, but you do not want to collaborate too closely, lest you both become targets of the rumored layoffs. 
-
-
+---
+title: "Fitting a Bradley-Terry Model in R"
+format: html
 ---
 
-I've scaffolded this report for you to make this process easier - as we talk about different sections of a report in class and read about how to create similar sections, you will practice by writing the equivalent section of your report.
+# Introduction
 
+Sports analytics has grown tremendously in recent years due to increased demand for data-driven insights from machine learning tools and advanced statistical models. Sports analytics has become a discipline of data science and can help predict the game scores and rank teams. However, in sports, the most fundamental question for teams and fans is who will win or lose. Building a binary outcome model for head-to-head games can help predict these results.
 
-The basic steps for this task are as follows:
+One of the most popular cumulative functions for a paired comparison model is the Bradley-Terry Model. This model estimates the probability that one team, i, wins against another, j, based on their relative strength parameters.
 
-- Identify the research question from the business question
+This user guide will explain how to fit a simple Bradley-Terry model in R between multiple teams. It will help guide you by providing examples from the hoopsno.csv file. In the end, you should have a basic understanding of how to fit a Bradley-Terry Model and interpret the results.
 
-- Identify data set(s) which are (1) publicly available (you don't have a budget to pay for private data) and (2) relevant to your task
+# Before Getting Started
 
-    - (HW Week 6) Document your data sets in `draft-data-doc.qmd`
+1.  Please download R or RStudio [@grolemundInstallingRStudioHandsOn]
 
-- Conduct a statistical analysis to support your answer to your research and business questions
+2.  Once installed, open R and create a new R script to install the `BradleyTerry2` package if you haven’t already [@bt2].
 
-    - Write a methods section for your business report corresponding to your statistical analysis
+The BradleyTerry2 package is responsible for the specification and fitting of Bradley-Terry logit, probit, or cauchit models to pair comparison data.
 
-    - (HW Week 9) Draft of results section of business report with relevant graphics/visual aids in `draft-results.qmd`
-    
-- Write your report
+```{r}
+# Uncomment the next line if you haven't installed the package yet
+# install.packages("BradleyTerry2")
 
-    - (HW Week 10) Draft of Intro/Conclusion sections in `draft-intro-conclusions.qmd`
-    
-    - (HW Week 11) Draft of Executive summary section in `draft-exec-summary.qmd`
-    
-- Revise your report
+#Load the Package
+library(BradleyTerry2)
+```
 
-    - (HW Week 12 -- not turned in) Revise your report
-    
-    - (HW Week 13) - Rough draft of report due. Create one or more qmd files for your report (you can overwrite or delete intro.qmd and summary.qmd), include the names of each file (in order) in `_quarto.yml`. You should use references (edit references.bib and use pandoc citations). Make sure your report compiles and looks reasonable in both html and pdf. 
-    
-    - Develop a presentation to go along with your report (Week 13). Create slides for your report using quarto. 
+# Creating or Loading a Dataset
 
-- Peer revise reports
+1.  Decide whether you want to load in a dataset or create your dataset in R.
 
-    - Peer revise reports
-    
-    - (HW Week 14) - Make edits to your report from comments received from peer review
+2.  The data should be structured to record paired comparisons, where one team wins against another. The data shouldn't contain missing values or duplicates. [@IdentifyRemoveDuplicate].
 
-- Final report & presentation due
+3.  To create your dataset in R, you should record the winning and losing teams and how many times each team won. 
+
+  A data frame created in R could be set up like this.
+
+```{r}
+# Example win data: Iowa beat Nebraska twice, Nebraska beat Northwestern once, and Northwestern beat Iowa once
+
+#data <- data.frame(
+#  winner = c("Iowa", "Nebraska", "Northwestern"),
+#  loser = c("Nebraska", "Northwestern", "Iowa"),
+#  win_count = c(2, 1, 1)
+#)
+
+#You can include as many teams as you like, but this example uses three
+```
+If you would like to load a completed dataset into R, do the following:
+
+Ex) hoopsno.csv file
+
+The hoopsno.csv file contains head-to-head win results between five Big Ten basketball teams in the 2024-2025 season who tied in the conference standings at the end of the year. These five teams were in a tiebreaker for the last four Big Ten tournament spots.
+
+```{r}
+# Load the data, replacing the filename.csv with your data name
+# data <- read.csv("filename.csv")
+
+#Loading the hoopsno.csv file
+data <- read.csv("hoopsno.csv")
+```
+
+# Converting Columns
+
+A common error in fitting models is having incorrectly named columns, so please ensure the columns names include the winner,loser, and win_count.
+
+The data should look like this.
+
+```{r}
+head(data)
+```
+
+Next, to fit the Bradley-Terry model, you have to convert the winner and loser columns to factors with the same levels.
+
+```{r}
+# Define the teams vector
+teams <- unique(c(data$winner, data$loser))
+
+# Convert winner and loser columns to factors
+data$winner <- factor(data$winner, levels = teams)
+data$loser  <- factor(data$loser, levels = teams)
+
+# levels = teams ensures that all teams are represented, even if some are not stated explicitly in the winner column
+```
+
+The winner and loser columns are now factors (categorical variables).
+
+# Fit the Bradley-Terry Model
+
+Now, we can fit a Bradley-Terry Model [@bt2] using BTm()!
+
+```{r}
+bt_model <- BTm(
+  outcome = cbind(data$win_count, rep(0, nrow(data))),
+  player1 = data$winner,
+  player2 = data$loser,
+  data = data
+)
+```
+
+-   The outcome variable combines the win count data and puts it into a format of wins and losses BTm() expects.
+
+-   The player1 and player2 variables correctly take in the winners and losers, and the data uses the correct dataset.
+
+# Interpreting the Results
+
+1. Once fitted, you can use the `BTabilities(bt_model)` function to find the estimated team strengths `estimate.std` and their detailed statistical significance from the fitted Bradley-Terry model.
+
+```{r}
+summary(bt_model)
+```
+
+-   The team with zero ability, Iowa in this case, is the baseline team to which all teams are compared. Teams with high negative ability, like Nebraska, have the worst team strength. Likewise, teams with high positive ability, like Minnesota, will have the best team strength.
+
+2.   Next, You should look at the standard error. If the standard error is high, like in this example, the accuracy of these measurements may be in doubt.
+
+-   To lower standard error and improve the model, you should collect more game result data and compare teams that are relatively equal in strength.
+
+3. After using the summary function, you should look at the team strengths to see if they are significant using a p value of 0.05.
+
+-   If it is \> 0.05, like it is for hoopsno.csv, the team's strength does not provide a statistically significant enough effect to influence the game's result.
+
+-   If it is \< 0.05, the team's strength does provide a statistically significant enough effect to influence the result of the game and can be used to predict outcomes.
+
+# Predicting Outcomes
+
+After testing the significance of the team strengths, the team strengths can be used to calculate the probability of team A beating B using model coefficients:
+
+For example, the odds of Iowa beating Nebraska in basketball if they played again can be computed as:\
+$$ P(A \text{ beats } B) = \frac{e^{(strength A)}}{e^{(strength A)} + e^{(strength B)}} $$
+$$ P(Iowa \text{ beats } Nebraska) = \frac{e^{(0)}}{e^{(0)} + e^{(-1.1)}}=0.75 $$ 
+
+# Conclusion
+
+In this user guide, you went through the basics of fitting a Bradley-Terry model in R to predict the outcomes of head-to-head competitions between teams. You estimated team strengths and their statistical significance by structuring paired comparison data correctly, converting columns into factors, and fitting the model using the `BTm()` function from the `BradleyTerry2` package [@bt2].
+
+You learned that teams with higher positive strength values are better than teams with high negative strength values. P-values and standard errors can affect the reliability of the data, and it is essential to check before predicting outcomes. While this guide does not go into more detail about incorporating home field advantage or advanced statistical methods, it does provide a good start to using a Bradley Terry Model. Using the Bradley-Terry model, you are part of the growing field of sports analytics and can help make valuable insights and predictions for teams.
+
+# Additional Resources
+
+To install R Studio [@grolemundInstallingRStudioHandsOn].
+
+To find out more about the Bradley-Terry package in R [@bt2].
+
+To learn more about data cleaning by removing duplicates and help with missing values [@IdentifyRemoveDuplicate]. Filling in missing values will help with a more complex solution by including a ‘direct’ ability parameter for each player with missing predictor values.
+
+To learn more about advanced binary outcome model and ranking systems, such as Elo and Glickman. [@glickmanModelsRatingSystems2024].
+
+For more information about the Bradley Terry model, including how to factor ties and home field advantage in the model [@smith1BradleyTerryLuceModel].
+
