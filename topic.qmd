@@ -1,2 +1,0 @@
-I may try to fit a bradley terry model to fit a data set. However, not sure if I can do this. I will try to use R but am open to any other software. I am not sure what technique means in this context.
-
