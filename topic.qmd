@@ -1,1 +1,1 @@
- This step by step guide will teach users how to fit a bradley-terry model to a dataset.
+ This step by step guide will teach users how to fit a bradley-terry model to a dataset in R.
