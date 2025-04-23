@@ -1,6 +1,7 @@
 ---
 title: "Fitting a Bradley-Terry Model in R"
 format: html
+bibliography: references.bib
 ---
 
 # Introduction
@@ -17,7 +18,7 @@ This user guide will explain how to fit a simple Bradley-Terry model in R betwee
 
 2.  Once installed, open R and create a new R script to install the `BradleyTerry2` package if you haven’t already [@bt2].
 
--   The BradleyTerry2 package is responsible for the specification and fitting of Bradley-Terry logit, probit, or cauchit models to pair comparison data.
+  The BradleyTerry2 package is responsible for the specification and fitting of Bradley-Terry logit, probit, or cauchit models to pair comparison data.
 
 ```{r}
 # Uncomment the next line if you haven't installed the package yet
@@ -31,11 +32,11 @@ library(BradleyTerry2)
 
 1.  Decide whether you want to create your own dataset in R or load an existing one.
 
-The data should be structured to record paired comparisons, where one team wins against another. The data shouldn't contain missing values or duplicates. [@IdentifyRemoveDuplicate].
+  The data should be structured to record paired comparisons, where one team wins against another. The data shouldn't contain missing values or duplicates. [@IdentifyRemoveDuplicate].
 
 2.  To create your dataset in R, you should record the winning and losing teams and how many times each team won.
 
-A data frame created in R could be set up like this.
+  A data frame created in R could be set up like this.
 
 ```{r}
 # Example win data: Iowa beat Nebraska twice, Nebraska beat Northwestern once, and Northwestern beat Iowa once
@@ -49,7 +50,7 @@ A data frame created in R could be set up like this.
 #You can include as many teams as you like, but this example uses three
 ```
 
-If you would like to load a completed dataset into R, do the following:
+3.  If you would like to load a completed dataset into R, do the following:
 
 ```{r}
 # Load the data, replacing the filename.csv with your data name
@@ -59,11 +60,10 @@ If you would like to load a completed dataset into R, do the following:
 data <- read.csv("hoopsno.csv")
 ```
 
-Example: `hoopsno.csv` file
-
--   The `hoopsno.csv` file contains head-to-head win results between five Big Ten basketball teams in the 2024-2025 season who tied in the conference standings at the end of the year. These five teams were in a tiebreaker for the last four Big Ten tournament spots.
+  Example: `hoopsno.csv` file
 
 
+-   The `hoopsno.csv` file contains head-to-head win results between five Big Ten basketball teams in the 2024-2025 season who tied in the conference standings at the end of the year. These five teams were in a tiebreaker for the last four Big Ten tournament spots [@MinnesotaGoldenGophers].
 
 # Converting Columns
 
@@ -72,8 +72,8 @@ Example: `hoopsno.csv` file
 ```{r}
 #colnames(data) <- c("winner", "loser", "win_count")
 ```
-
-The data should look like this.
+    
+  The data should look like this.
 
 ```{r}
 head(data)
@@ -92,11 +92,13 @@ data$loser  <- factor(data$loser, levels = teams)
 # levels = teams ensures that all teams are represented, even if some are not stated explicitly in the winner column
 ```
 
-The winner and loser columns are now factors (categorical variables).
+        
+  The winner and loser columns are now factors (categorical variables).
+
 
 # Fit the Bradley-Terry Model
 
-Now, we can fit a Bradley-Terry Model [@bt2] using BTm()!
+1.  Now, we can fit a Bradley-Terry Model [@bt2] using BTm()!
 
 ```{r}
 bt_model <- BTm(
@@ -107,9 +109,11 @@ bt_model <- BTm(
 )
 ```
 
--   The outcome variable combines the win count data and puts it into a format of wins and losses BTm() expects.
+         
+  The outcome variable combines the win count data and puts it into a format of wins and losses BTm() expects.
 
--   The player1 and player2 variables correctly take in the winners and losers, and the data uses the correct dataset.
+  The player1 and player2 variables correctly take in the winners and losers, and the data uses the correct dataset.
+
 
 # Interpreting the Results
 
@@ -119,25 +123,27 @@ bt_model <- BTm(
 summary(bt_model)
 ```
 
--   The team with zero ability, Iowa in this case, is the baseline team to which all teams are compared. Teams with high negative ability, like Nebraska, have the worst team strength. Likewise, teams with high positive ability, like Minnesota, will have the best team strength.
+      
+  The team with zero ability, Iowa in this case, is the baseline team to which all teams are compared.    
+  Teams with high negative ability, like Nebraska, have the worst team strength.    
+  Likewise, teams with high positive ability, like Minnesota, will have the best team strength.
 
-2.  Next, you should look at the standard error. If the standard error is high, like in this example, the accuracy of these measurements may be in doubt.
 
-    To lower standard error and improve the model, you should collect more game result data and compare teams that are relatively equal in strength.
+2.  Next, you should look at the standard error. If the standard error is high, like in this example, the accuracy of these measurements may be in doubt [@PowerSTAT2024].
 
-<!-- -->
+To lower standard error and improve the model, you should collect more game result data and compare teams that are relatively equal in strength.
 
 3.  After using the summary function, you should look at the team strengths to see if they are significant using a p value of 0.05.
 
-    If it is \> 0.05, like it is for hoopsno.csv, the team's strength does not provide a statistically significant enough effect to influence the game's result.
+  If it is \> 0.05, like it is for hoopsno.csv, the team's strength does not provide a statistically significant enough effect to influence the game's result.
 
-    If it is \< 0.05, the team's strength does provide a statistically significant enough effect to influence the result of the game and can be used to predict outcomes.
+  If it is \< 0.05, the team's strength does provide a statistically significant enough effect to influence the result of the game and can be used to predict outcomes.
 
 # Predicting Outcomes
 
-After testing the significance of the team strengths, the team strengths can be used to calculate the probability of team A beating B using model coefficients:
+1.  After testing the significance of the team strengths, you can now use the team strengths to calculate the probability of team A beating B using model coefficients:
 
--   For example, the odds of Iowa beating Nebraska in basketball if they played again can be computed as:\
+  For example, the odds of Iowa beating Nebraska in basketball if they played again can be computed as:\
     $$ P(A \text{ beats } B) = \frac{e^{(strength A)}}{e^{(strength A)} + e^{(strength B)}} $$ $$ P(Iowa \text{ beats } Nebraska) = \frac{e^{(0)}}{e^{(0)} + e^{(-1.1)}}=0.75 $$
 
 # Conclusion
@@ -148,12 +154,12 @@ You learned that teams with higher positive strength values are better than team
 
 # Additional Resources
 
-To install R Studio [@grolemundInstallingRStudioHandsOn].
+-   To install R Studio [@grolemundInstallingRStudioHandsOn].
 
-To find out more about the Bradley-Terry package in R [@bt2].
+-   To find out more about the Bradley-Terry package in R [@bt2].
 
-To learn more about data cleaning by removing duplicates and help with missing values [@IdentifyRemoveDuplicate]. Filling in missing values will help with a more complex solution by including a ‘direct’ ability parameter for each player with missing predictor values.
+-   To learn more about data cleaning by removing duplicates and help with missing values [@IdentifyRemoveDuplicate]. Filling in missing values will help with a more complex solution by including a ‘direct’ ability parameter for each player with missing predictor values.
 
-To learn more about advanced binary outcome models and ranking systems, such as Elo and Glickman. [@glickmanModelsRatingSystems2024].
+-   To learn more about advanced binary outcome models and ranking systems, such as Elo and Glickman. [@glickmanModelsRatingSystems2024].
 
-For more information about the Bradley Terry model, including how to factor ties and home field advantage in the model [@smith1BradleyTerryLuceModel].
+-   For more information about the Bradley Terry model, including how to factor ties and home field advantage in the model [@smith1BradleyTerryLuceModel].

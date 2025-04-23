@@ -1,11 +1,9 @@
 ---
 bibliography: references.bib
 ---
-
 # References
+::: {#refs}
+:::
 
-@PowerSTAT2024
-
-@MinnesotaGoldenGophers
-
-@glickmanModelsRatingSystems2024
+::: {#refs}
+:::

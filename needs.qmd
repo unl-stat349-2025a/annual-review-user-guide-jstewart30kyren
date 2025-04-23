@@ -6,20 +6,14 @@ bibliography: references.bib
 
 What does someone trying to accomplish your chosen task need help with?
 
-They likely need help formatting the data so the model can fit the dataset. The user will likely be using real-world data and must adjust the dataset so that it can be fitted. They also may need to know more about the underlying theory of the Bradley-Terry Model. Additionally, they will likely need help interpreting results after fitting the model.
+-   They likely need help formatting the data so the model can fit the dataset. The user will likely be using real-world data and must adjust the dataset so that it can be fitted. They also may need to know more about the underlying theory of the Bradley-Terry Model. Additionally, they will likely need help interpreting results after fitting the model.
 
 What parts are likely to be tricky? 
 
-Knowing how to format the data will be difficult, especially if missing values exist. Having the correct statistical libraries will also be crucial to fitting the model. Additionally, the Bradley-Terry model doesn’t handle ties well, so adjusting the model or dataset could be a difficult challenge. 
+-   Knowing how to format the data will be difficult, especially if missing values exist. Having the correct statistical libraries will also be crucial to fitting the model. Additionally, the Bradley-Terry model doesn’t handle ties well, so adjusting the model or dataset could be a difficult challenge. 
 
 What resources are already available on this topic that may be helpful? Look for e.g. software vignettes, package documentation, papers about software packages, and so on.
 
-@wallin2024
+-   This article helps users with R and Python data analysis [@wallin2024].
 
-This article helps users with R and Python data analysis.
-
-@Bradley
-
-This textbook helps with understanding the concepts of the Bradley-Terry Model as well as illustrating the code involved.
-
-Github pages also have information that could help the user.
+-   This textbook helps with understanding the concepts of the Bradley-Terry Model as well as illustrating the code involved [@smith1BradleyTerryLuceModel].
