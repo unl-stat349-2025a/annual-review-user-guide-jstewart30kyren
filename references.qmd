@@ -5,5 +5,3 @@ bibliography: references.bib
 ::: {#refs}
 :::
 
-::: {#refs}
-:::
